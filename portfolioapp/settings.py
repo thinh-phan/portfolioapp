@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-xu!8k(r5rj*+j18u=i$)-u3u0$_2e3tq_gpdcg9zhy+r80scu^"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['thinhphan.pythonanywhere.com']
 
 
 # Application definition
@@ -120,12 +120,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "static"
+
+# Serving media files
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Serving static files
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+# local_settings.py
+try:
+    from .local_settings import *
+except ImportError:
+    print("Cannot import local settings!!!")
+
